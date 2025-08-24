@@ -9,7 +9,7 @@ pipeline{
                 script{
                     withCredentials([string(credentialsId: 'Docker_hub', variable: 'DOC_PASS')]) {
                         sh '''
-                         docker build -t khaira23/testapp:${VERSION} .
+                         docker build -t khaira23/mysqlapp:${VERSION} .
                          echo $DOC_PASS  | docker login -u khaira23 --password-stdin  
                          docker push khaira23/testapp:${VERSION} 
                          docker rmi khaira23/testapp:${VERSION}            
