@@ -7,16 +7,16 @@ pipeline{
         stage("docker build and push"){
             steps{
                 script{
-                    withCredentials([string(credentialsId: 'docker_pass', variable: 'docker_p')]) {
+                    withCredentials([string(credentialsId: 'Docker_hub', variable: 'DOC_PASS')]) {
                         sh '''
-                         docker build -t 192.168.117.137:9797/harpreet:${VERSION} .
-                         echo $docker_p | docker login -u admin --password-stdin 192.168.117.137:9797 
-                         docker push 192.168.117.137:9797/harpreet:${VERSION} 
-                         docker rmi 192.168.117.137:9797/harpreet:${VERSION}            
+                         docker build -t khaira23/testapp:${VERSION} .
+                         echo $DOC_PASS  | docker login -u khaira23 --password-stdin  
+                         docker push khaira23/testapp:${VERSION} 
+                         docker rmi khaira23/testapp:${VERSION}            
                         '''
                     }
-                }
-            } 
-        }
-     }
-  }
+                 }
+              } 
+           }
+        }  
+    } 
